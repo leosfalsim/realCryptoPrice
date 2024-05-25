@@ -1,27 +1,54 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+/* Estilo para cada item da lista */
+ion-item {
+  border-radius: 20px; /* Borda arredondada */
+  background-color: rgba(255, 255, 255, 0.15); /* Fundo transparente com leve transparência */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  margin-bottom: 20px; /* Espaçamento inferior */
+  position: relative; /* Define o posicionamento relativo */
+  overflow: hidden; /* Esconde o conteúdo que ultrapassa o limite */
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+/* Estilo para o efeito de luz */
+ion-item::after {
+  content: ''; /* Conteúdo vazio */
+  position: absolute; /* Define o posicionamento absoluto */
+  top: 50%; /* Centraliza verticalmente */
+  left: 50%; /* Centraliza horizontalmente */
+  width: 200%; /* Largura maior que o container */
+  height: 200%; /* Altura maior que o container */
+  background: rgba(255, 0, 255, 0.5); /* Cor magenta semi-transparente */
+  opacity: 0; /* Inicia invisível */
+  transition: opacity 0.3s ease-in-out; /* Transição suave de opacidade */
+  border-radius: 50%; /* Cria um círculo */
+  transform: translate(-50%, -50%); /* Move para o centro */
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+/* Estilo para quando o item é focado */
+ion-item:focus::after {
+  opacity: 1; /* Torna o efeito de luz visível */
 }
 
-#container a {
-  text-decoration: none;
+/* Estilo para a imagem da criptomoeda */
+.crypto-icon {
+  width: 40px; /* Largura da imagem */
+  height: auto; /* Altura automática para manter a proporção */
+  border-radius: 50%; /* Borda arredondada */
+}
+
+/* Estilo para o título da criptomoeda */
+ion-label h2 {
+  margin-top: 0; /* Remove a margem superior do título */
+  font-weight: bold; /* Deixa o título em negrito */
+  color: #fff; /* Cor branca para o título */
+}
+
+/* Estilo para o preço da criptomoeda */
+ion-badge.price-badge {
+  font-size: 16px; /* Define o tamanho da fonte */
+  color: #fff; /* Cor branca para o preço */
+}
+
+/* Estilo para o badge de preço */
+ion-badge.price-badge p {
+  margin: 0; /* Remove margem interna do badge */
 }
