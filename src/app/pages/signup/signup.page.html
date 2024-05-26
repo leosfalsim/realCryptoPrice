@@ -9,40 +9,48 @@
   <div>
     <p class="subTitle">Sign Up to create your account</p>
   </div>
-
   <form [formGroup]="ionicForm">
     <div class="ion-padding">
       <ion-item>
-        <ion-input formControlName="name" placeholder="name" class="input"></ion-input>
+        <ion-input formControlName="name" type="name" placeholder="name" class="input"></ion-input>
         <ion-icon name="person-outline"></ion-icon>
       </ion-item>
-      <div *ngIf="(ionicForm.get('name')?.dirty) && ionicForm.get('name')?.hasError('required')">
-        <ion-text color="danger">This field shouldn't be empty!</ion-text>
-      </div>
-      <div *ngIf="(ionicForm.get('name')?.dirty) && ionicForm.get('name')?.hasError('pattern')">
-        <ion-text color="danger">Provide a valid name!</ion-text>
+      <div *ngIf="(ionicForm.get('name')?.touched) && ionicForm.get('name')?.invalid">
+        <ion-text *ngIf="errorControl['name'].hasError('required')" class="errorInput" color="danger">
+          This field shouldn't be empty!
+        </ion-text>
+        <ion-text *ngIf="errorControl['name'].hasError('pattern')" class="errorInput" color="danger">
+          <p>Provide a valid name!</p>
+        </ion-text>
       </div>
       <ion-item>
         <ion-input formControlName="email" type="email" placeholder="email" class="input"></ion-input>
         <ion-icon name="mail-outline"></ion-icon>
       </ion-item>
-      <div *ngIf="(ionicForm.get('email')?.dirty) && ionicForm.get('email')?.hasError('required')">
-        <ion-text color="danger">This field shouldn't be empty!</ion-text>
-      </div>
-      <div *ngIf="(ionicForm.get('email')?.dirty) && ionicForm.get('email')?.hasError('pattern')">
-        <ion-text color="danger">Provide a valid e-mail!</ion-text>
+      <div *ngIf="(ionicForm.get('email')?.touched) && ionicForm.get('email')?.invalid">
+        <ion-text *ngIf="errorControl['email'].hasError('required')" class="errorInput" color="danger">
+          This field shouldn't be empty!
+        </ion-text>
+        <ion-text *ngIf="errorControl['email'].hasError('pattern')" class="errorInput" color="danger">
+          <p>Provide a valid e-mail!</p>
+        </ion-text>
       </div>
       <ion-item>
         <ion-input formControlName="password" type="password" placeholder="password"></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
-      <div *ngIf="(ionicForm.get('password')?.dirty) && ionicForm.get('password')?.hasError('required')">
-        <ion-text color="danger">This field shouldn't be empty!</ion-text>
+      <div *ngIf="(ionicForm.get('password')?.touched) || (ionicForm.get('password')?.dirty) && ionicForm.get('password')?.invalid">
+        <ion-text *ngIf="errorControl['password'].hasError('required')" class="errorInput" color="danger">
+          This field shouldn't be empty!
+        </ion-text>
+        <ion-text *ngIf="errorControl['password'].hasError('pattern')" class="errorInput" color="danger">
+          <p>The password must have:</p>
+          <p>min 8 characters</p>
+          <p>min 1 special character</p>
+          <p>min 1 number</p>
+          <p>min 1 capital letter</p>
+        </ion-text>
       </div>
-      <div *ngIf="(ionicForm.get('password')?.dirty) && ionicForm.get('password')?.hasError('minlength')">
-        <ion-text color="danger">The min of characters is 3!</ion-text>
-      </div>
-
       <div class="signinLink">
         <p>
           Already a member?<a [routerLink]="['/login']" style="color:#FFC33F"> Signin now</a>
@@ -55,5 +63,4 @@
       </ion-fab-button>
     </ion-fab>
   </form>
-
 </ion-content>

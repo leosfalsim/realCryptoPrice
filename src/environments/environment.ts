@@ -13,6 +13,9 @@ export const environment = {
     messagingSenderId: "523077895475",
     appId: "1:523077895475:web:fa0887b1c88d2e6627ea46",
     measurementId: "G-QNEJMR32HP"
+  },
+  VAPID: {
+    key: 'BOcZ_yp_c-s5gpxakwwyt0i8YjH9w5iSO_s1osnuNw4YhZO4V8O0dxmVb'
   }
 };
 

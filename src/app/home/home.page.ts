@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { WebsocketService } from '../services/websocketservice.service';
+import { WebsocketService } from '../services/websocket/websocketservice.service';
 import { Subscription } from 'rxjs';
-
-interface CryptoData {
-  symbol: string;
-  price: string;
-}
+import { AuthenticationService } from '../services/auth/authentication.service';
+import { Router } from '@angular/router';
+import { CryptoData } from '../interfaces/ICryptoData';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +29,11 @@ export class HomePage implements OnInit, OnDestroy {
     ['BNBUSDT', 'Binance']
   ]);
 
-  constructor(private websocketService: WebsocketService) {}
+  constructor(
+    private websocketService: WebsocketService,
+    private auth: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.websocketSubscription = this.websocketService.connectWebSocket().subscribe(
@@ -63,7 +65,9 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.websocketSubscription.unsubscribe();
+    if (this.websocketSubscription) {
+      this.websocketSubscription.unsubscribe();
+    }
     this.websocketService.disconnectWebSocket();
   }
 
@@ -98,5 +102,11 @@ export class HomePage implements OnInit, OnDestroy {
       default:
         return 'lhttps://p7.hiclipart.com/preview/822/164/28/initial-coin-offering-cryptocurrency-exchange-lion-blockchain-token-png.jpg';
     }
+  }
+
+  signOut(){
+    this.auth.signOut().then(() =>{
+      this.router.navigate(['/landing'])
+    })
   }
 }

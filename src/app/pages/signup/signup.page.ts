@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
-import { AuthenticationService } from 'src/app/authentication.service';
+import { AuthenticationService } from 'src/app/services/auth/authentication.service';
 
 @Component({
   selector: 'app-signup',
@@ -50,8 +50,7 @@ export class SignupPage implements OnInit {
     if (this.ionicForm?.valid) {
 
       const user = await this.authService.registerUser(this.ionicForm.value.email, this.ionicForm.value.password).catch((err) => {
-        this.presentToast(err)
-        console.log(err);
+        this.presentToast('The credentials are not valid!')
         loading.dismiss();
       })
 
@@ -60,11 +59,11 @@ export class SignupPage implements OnInit {
         this.router.navigate(['/home'])
       }
     } else {
-      return console.log('Please provide all the required values!');
+      this.presentToast('Please provide all the required values!');
     }
   }
 
-  public async presentToast(message: undefined) {
+  public async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
       duration: 1500,
@@ -72,5 +71,9 @@ export class SignupPage implements OnInit {
     });
 
     await toast.present();
+  }
+
+  get errorControl() {
+    return this.ionicForm.controls;
   }
 }

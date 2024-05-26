@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
-import { AuthenticationService } from 'src/app/authentication.service';
+import { AuthenticationService } from 'src/app/services/auth/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -47,7 +47,6 @@ export class LoginPage implements OnInit {
 
       const user = await this.authService.loginUser(this.ionicForm.value.email, this.ionicForm.value.password).catch((err) => {
         this.presentToast(err)
-        console.log(err);
         loading.dismiss();
       })
 
@@ -56,11 +55,11 @@ export class LoginPage implements OnInit {
         this.router.navigate(['/home'])
       }
     } else {
-      return console.log('Please provide all the required values!');
+      this.presentToast('Please provide all the required values!');
     }
   }
 
-  public async presentToast(message: undefined) {
+  public async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
       duration: 1500,

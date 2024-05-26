@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title class="title">
-      Welcome back
+      Welcome Back
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,7 +9,6 @@
   <div>
     <p class="subTitle">Sign in to access your account</p>
   </div>
-
   <form [formGroup]="ionicForm">
     <div class="ion-padding">
       <ion-item>
@@ -46,7 +45,7 @@
       </div>
     </div>
     <ion-fab *ngIf="ionicForm.valid" vertical="bottom" horizontal="end" style="margin-bottom: 30px;">
-      <ion-fab-button (click)="logIn()" [routerLink]="['/home']">
+      <ion-fab-button (click)="logIn()">
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-fab-button>
     </ion-fab>
