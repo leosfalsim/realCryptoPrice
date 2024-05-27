@@ -46,7 +46,6 @@ export class LoginPage implements OnInit {
     if (this.ionicForm?.valid) {
 
       const user = await this.authService.loginUser(this.ionicForm.value.email, this.ionicForm.value.password).catch((err) => {
-        this.presentToast(err)
         loading.dismiss();
       })
 

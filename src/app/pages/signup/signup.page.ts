@@ -50,9 +50,8 @@ export class SignupPage implements OnInit {
     if (this.ionicForm?.valid) {
 
       const user = await this.authService.registerUser(this.ionicForm.value.email, this.ionicForm.value.password).catch((err) => {
-        this.presentToast('The credentials are not valid!')
         loading.dismiss();
-      })
+      });
 
       if (user) {
         loading.dismiss();
