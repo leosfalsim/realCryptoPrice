@@ -26,8 +26,7 @@ If you want to build again, run the following command ionic app-generate, or sim
 
 ## Demo
 
-![rcpapp](https://github.com/leosfalsim/realCryptoPrice/assets/110071343/23ff723a-48f9-4afe-9701-e7187fedf78a)
-
+![Design sem nome (1)](https://github.com/leosfalsim/realCryptoPrice/assets/110071343/22de550a-338a-4c6e-9834-b9287438d3b1)
 
 ## Notes
 
