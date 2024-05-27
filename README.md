@@ -17,7 +17,8 @@ You can run this project as follows:
 - Inside the project folder, run the command `npm install` to install the necessary dependencies
 - Run the project with the command `ionic serve`
 - Access the application through the browser at the following address `http://localhost:8100/`
-- If you prefer, you can test the application directly on your Android smartphone. In the project repository, there is a file called [realCryptoPrice.apk] (https://github.com/leosfalsim/realCryptoPrice/blob/main/realCryproPrice.apk).
+- If you prefer, you can test the application directly on your Android smartphone. In the project repository, there is a file called
+- [realCryptoPrice.apk](https://github.com/leosfalsim/realCryptoPrice/blob/main/realCryproPrice.apk).
 
 You can also clone the project and generate the IPA File for iOS, if you have a Mac. The build has already been generated and Capacitor added for iOS.
 
